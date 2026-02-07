@@ -1,0 +1,419 @@
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+body {
+    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+    background: linear-gradient(135deg, #1a1a2e 0%, #16213e 100%);
+    color: #fff;
+    overflow: hidden;
+    height: 100vh;
+}
+
+.screen {
+    position: fixed;
+    width: 100%;
+    height: 100%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.hidden {
+    display: none !important;
+}
+
+/* Экран подключения */
+#connectScreen .container {
+    background: rgba(30, 30, 46, 0.95);
+    padding: 2.5rem;
+    border-radius: 15px;
+    box-shadow: 0 10px 30px rgba(0, 0, 0, 0.5);
+    width: 100%;
+    max-width: 500px;
+    backdrop-filter: blur(10px);
+    border: 1px solid rgba(255, 255, 255, 0.1);
+}
+
+#connectScreen h1 {
+    text-align: center;
+    margin-bottom: 2rem;
+    color: #4cc9f0;
+    font-size: 2.2rem;
+    text-shadow: 0 2px 4px rgba(0, 0, 0, 0.3);
+}
+
+#connectScreen h1 i {
+    margin-right: 10px;
+}
+
+.form-group {
+    margin-bottom: 1.5rem;
+}
+
+.form-group label {
+    display: block;
+    margin-bottom: 0.5rem;
+    color: #b0b0d0;
+    font-weight: 500;
+}
+
+.form-group input {
+    width: 100%;
+    padding: 12px 15px;
+    background: rgba(255, 255, 255, 0.1);
+    border: 2px solid rgba(255, 255, 255, 0.2);
+    border-radius: 8px;
+    color: white;
+    font-size: 1rem;
+    transition: all 0.3s ease;
+}
+
+.form-group input:focus {
+    outline: none;
+    border-color: #4cc9f0;
+    box-shadow: 0 0 0 3px rgba(76, 201, 240, 0.2);
+}
+
+.form-group small {
+    display: block;
+    margin-top: 5px;
+    color: #888;
+    font-size: 0.85rem;
+}
+
+.btn {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    padding: 12px 24px;
+    border: none;
+    border-radius: 8px;
+    font-size: 1rem;
+    font-weight: 600;
+    cursor: pointer;
+    transition: all 0.3s ease;
+    gap: 8px;
+}
+
+.btn-primary {
+    background: linear-gradient(135deg, #4361ee 0%, #3a0ca3 100%);
+    color: white;
+    width: 100%;
+    margin-top: 10px;
+}
+
+.btn-primary:hover {
+    transform: translateY(-2px);
+    box-shadow: 0 5px 15px rgba(67, 97, 238, 0.4);
+}
+
+.btn-danger {
+    background: linear-gradient(135deg, #f72585 0%, #b5179e 100%);
+    color: white;
+}
+
+.info-box {
+    margin-top: 2rem;
+    padding: 1.5rem;
+    background: rgba(255, 255, 255, 0.05);
+    border-radius: 10px;
+    border-left: 4px solid #4cc9f0;
+}
+
+.info-box h3 {
+    color: #4cc9f0;
+    margin-bottom: 10px;
+    font-size: 1.1rem;
+}
+
+.info-box ul {
+    list-style: none;
+    padding-left: 0;
+}
+
+.info-box li {
+    padding: 5px 0;
+    color: #b0b0d0;
+    border-bottom: 1px solid rgba(255, 255, 255, 0.1);
+}
+
+.info-box li:last-child {
+    border-bottom: none;
+}
+
+/* Игровой экран */
+#gameCanvas {
+    display: block;
+    background: #87CEEB;
+}
+
+#ui {
+    position: fixed;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    pointer-events: none;
+}
+
+#healthBar {
+    position: absolute;
+    top: 20px;
+    left: 20px;
+    background: rgba(0, 0, 0, 0.7);
+    padding: 10px 15px;
+    border-radius: 10px;
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    pointer-events: auto;
+}
+
+#hearts {
+    display: flex;
+    gap: 2px;
+}
+
+.heart {
+    width: 24px;
+    height: 24px;
+    background-image: url('../assets/heart.png');
+    background-size: contain;
+    background-repeat: no-repeat;
+}
+
+#healthText {
+    font-weight: bold;
+    color: #fff;
+    font-size: 1.1rem;
+}
+
+#playerInfo {
+    position: absolute;
+    top: 20px;
+    right: 20px;
+    background: rgba(0, 0, 0, 0.7);
+    padding: 10px 15px;
+    border-radius: 10px;
+    text-align: right;
+    pointer-events: auto;
+}
+
+#playerName {
+    font-size: 1.2rem;
+    font-weight: bold;
+    color: #4cc9f0;
+    display: block;
+    margin-bottom: 5px;
+}
+
+#coordinates {
+    font-size: 0.9rem;
+    color: #ccc;
+}
+
+#chat {
+    position: absolute;
+    bottom: 20px;
+    left: 20px;
+    width: 300px;
+    background: rgba(0, 0, 0, 0.7);
+    border-radius: 10px;
+    overflow: hidden;
+    pointer-events: auto;
+}
+
+#chatMessages {
+    height: 150px;
+    overflow-y: auto;
+    padding: 10px;
+    font-size: 0.9rem;
+}
+
+.chat-message {
+    margin-bottom: 5px;
+    padding: 5px;
+    border-radius: 5px;
+    background: rgba(255, 255, 255, 0.1);
+}
+
+.chat-username {
+    color: #4cc9f0;
+    font-weight: bold;
+}
+
+#chatInput {
+    width: 100%;
+    padding: 10px;
+    background: rgba(255, 255, 255, 0.1);
+    border: none;
+    color: white;
+    border-top: 1px solid rgba(255, 255, 255, 0.2);
+}
+
+#chatInput:focus {
+    outline: none;
+}
+
+.ui-btn {
+    position: absolute;
+    bottom: 20px;
+    right: 20px;
+    background: rgba(67, 97, 238, 0.9);
+    color: white;
+    border: none;
+    padding: 10px 20px;
+    border-radius: 8px;
+    cursor: pointer;
+    font-size: 1rem;
+    display: flex;
+    align-items: center;
+    gap: 8px;
+    pointer-events: auto;
+    transition: all 0.3s ease;
+}
+
+.ui-btn:hover {
+    background: rgba(67, 97, 238, 1);
+    transform: translateY(-2px);
+}
+
+#onlineCount {
+    position: absolute;
+    top: 80px;
+    right: 20px;
+    background: rgba(0, 0, 0, 0.7);
+    padding: 8px 12px;
+    border-radius: 8px;
+    display: flex;
+    align-items: center;
+    gap: 8px;
+    pointer-events: auto;
+}
+
+/* Инвентарь */
+#inventory {
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    background: rgba(30, 30, 46, 0.95);
+    border: 2px solid #4cc9f0;
+    border-radius: 15px;
+    padding: 20px;
+    width: 400px;
+    z-index: 1000;
+    pointer-events: auto;
+}
+
+.inventory-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-bottom: 20px;
+    border-bottom: 2px solid rgba(76, 201, 240, 0.3);
+    padding-bottom: 10px;
+}
+
+.inventory-header h2 {
+    color: #4cc9f0;
+}
+
+.close-btn {
+    background: none;
+    border: none;
+    color: #fff;
+    font-size: 1.5rem;
+    cursor: pointer;
+    padding: 5px;
+}
+
+#inventorySlots {
+    display: grid;
+    grid-template-columns: repeat(5, 1fr);
+    gap: 10px;
+}
+
+.inventory-slot {
+    width: 64px;
+    height: 64px;
+    background: rgba(255, 255, 255, 0.1);
+    border: 2px solid rgba(255, 255, 255, 0.2);
+    border-radius: 8px;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    cursor: pointer;
+    transition: all 0.3s ease;
+}
+
+.inventory-slot:hover {
+    background: rgba(255, 255, 255, 0.2);
+    border-color: #4cc9f0;
+}
+
+.inventory-slot.selected {
+    border-color: #4cc9f0;
+    background: rgba(76, 201, 240, 0.2);
+}
+
+.block-icon {
+    width: 32px;
+    height: 32px;
+    background-size: contain;
+    background-repeat: no-repeat;
+}
+
+.block-count {
+    font-size: 0.8rem;
+    color: #fff;
+    margin-top: 5px;
+}
+
+/* Экран смерти */
+#deathScreen {
+    background: rgba(0, 0, 0, 0.9);
+    z-index: 2000;
+}
+
+.death-message {
+    text-align: center;
+    background: rgba(30, 30, 46, 0.95);
+    padding: 3rem;
+    border-radius: 15px;
+    border: 2px solid #f72585;
+    max-width: 500px;
+    width: 90%;
+}
+
+.death-message h1 {
+    color: #f72585;
+    margin-bottom: 1rem;
+    font-size: 2.5rem;
+}
+
+.death-message p {
+    font-size: 1.2rem;
+    margin-bottom: 2rem;
+    color: #b0b0d0;
+}
+
+#respawnTimer {
+    color: #4cc9f0;
+    font-weight: bold;
+    font-size: 1.5rem;
+}
+
+.death-buttons {
+    display: flex;
+    gap: 20px;
+    justify-content: center;
+}
+
+.death-buttons .btn {
+    min-width: 150px;
+}

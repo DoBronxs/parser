@@ -1,0 +1,32 @@
+{
+  "blocks": [
+    {
+      "id": 0,
+      "name": "air",
+      "solid": false,
+      "breakable": false,
+      "texture": "transparent"
+    },
+    {
+      "id": 1,
+      "name": "grass",
+      "solid": true,
+      "breakable": true,
+      "texture": "grass.jpg"
+    },
+    {
+      "id": 2,
+      "name": "dirt",
+      "solid": true,
+      "breakable": true,
+      "texture": "dirt.jpg"
+    },
+    {
+      "id": 3,
+      "name": "stone",
+      "solid": true,
+      "breakable": true,
+      "texture": "stone.jpg"
+    }
+  ]
+}

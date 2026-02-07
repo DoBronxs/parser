@@ -1,0 +1,114 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Minisrooft Multiplayer</title>
+    <link rel="stylesheet" href="css/style.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+</head>
+<body>
+    <!-- Экран подключения -->
+    <div id="connectScreen" class="screen">
+        <div class="container">
+            <h1><i class="fas fa-cube"></i> Minisrooft Multiplayer</h1>
+            
+            <div class="form-group">
+                <label for="username"><i class="fas fa-user"></i> Имя игрока:</label>
+                <input type="text" id="username" placeholder="Введите ваш ник" maxlength="16">
+            </div>
+            
+            <div class="form-group">
+                <label for="serverIp"><i class="fas fa-server"></i> IP сервера:</label>
+                <input type="text" id="serverIp" placeholder="ws://хостинг:порт" value="ws://localhost:3000">
+                <small>Пример: ws://ваш_сервер.com:3000</small>
+            </div>
+            
+            <button id="connectBtn" class="btn btn-primary">
+                <i class="fas fa-plug"></i> Подключиться
+            </button>
+            
+            <div class="info-box">
+                <h3><i class="fas fa-info-circle"></i> Как играть:</h3>
+                <ul>
+                    <li>WASD - движение</li>
+                    <li>ЛКМ по блоку - сломать</li>
+                    <li>ПКМ по месту - поставить блок</li>
+                    <li>E - открыть/закрыть инвентарь</li>
+                    <li>ЛКМ по игроку - атаковать</li>
+                </ul>
+            </div>
+        </div>
+    </div>
+    
+    <!-- Игровой экран -->
+    <div id="gameScreen" class="screen hidden">
+        <canvas id="gameCanvas"></canvas>
+        
+        <!-- UI элементы -->
+        <div id="ui">
+            <div id="healthBar">
+                <div id="hearts"></div>
+                <span id="healthText">20/20</span>
+            </div>
+            
+            <div id="playerInfo">
+                <span id="playerName"></span>
+                <div id="coordinates">X: 0, Y: 0</div>
+            </div>
+            
+            <div id="chat">
+                <div id="chatMessages"></div>
+                <input type="text" id="chatInput" placeholder="Напишите сообщение...">
+            </div>
+            
+            <button id="inventoryBtn" class="ui-btn">
+                <i class="fas fa-backpack"></i> Инвентарь (E)
+            </button>
+            
+            <div id="onlineCount">
+                <i class="fas fa-users"></i> <span id="onlineNumber">1</span>
+            </div>
+        </div>
+        
+        <!-- Инвентарь -->
+        <div id="inventory" class="hidden">
+            <div class="inventory-header">
+                <h2><i class="fas fa-backpack"></i> Инвентарь</h2>
+                <button id="closeInventory" class="close-btn"><i class="fas fa-times"></i></button>
+            </div>
+            <div id="inventorySlots"></div>
+        </div>
+        
+        <!-- Экран смерти -->
+        <div id="deathScreen" class="screen hidden">
+            <div class="death-message">
+                <h1><i class="fas fa-skull-crossbones"></i> ВЫ УМЕРЛИ!</h1>
+                <p>Возродитесь через <span id="respawnTimer">5</span> секунд</p>
+                <div class="death-buttons">
+                    <button id="respawnBtn" class="btn btn-primary">
+                        <i class="fas fa-redo"></i> Возродиться
+                    </button>
+                    <button id="quitBtn" class="btn btn-danger">
+                        <i class="fas fa-door-open"></i> Выйти
+                    </button>
+                </div>
+            </div>
+        </div>
+    </div>
+    
+    <!-- Скрытые изображения для предзагрузки -->
+    <div id="preload" style="display: none;">
+        <img src="assets/player.jpg" id="playerImg">
+        <img src="assets/grass.jpg" id="grassImg">
+        <img src="assets/dirt.jpg" id="dirtImg">
+        <img src="assets/stone.jpg" id="stoneImg">
+        <img src="assets/heart.png" id="heartImg">
+    </div>
+    
+    <script src="js/network.js"></script>
+    <script src="js/renderer.js"></script>
+    <script src="js/ui.js"></script>
+    <script src="js/game.js"></script>
+</body>
+</html>
